@@ -110,7 +110,7 @@ Step 5: Link Local Repository to GitHub via SSH.................................
 git remote set-url origin git@github.com:Hadi-Badran/Github-Course-Task1.git
 
 
-# Push local repository to GitHub with upstream tracking
+# Push the local repository to GitHub with upstream tracking
 git push -u origin main
 
 
