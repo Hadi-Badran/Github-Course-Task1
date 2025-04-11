@@ -68,81 +68,49 @@ Step 1: Generate SSH Key Pair...................................................
 # Generate a new SSH key if none exists
 ssh-keygen -t ed25519 -C "your_email@example.com"
 
-# Start the SSH agent in the background
-eval "$(ssh-agent -s)"
-
-# Add your private key to the SSH agent
-ssh-add ~/.ssh/id_ed25519
 
 
 
 Step 2: Add SSH Public Key to GitHub............................................
 
-bash# Display and copy your public key
+bash# Display and copy your public key : to copy it the right form so the git hub accept it 
+
 cat ~/.ssh/id_ed25519.pub
 
-Log in to GitHub and go to Settings → SSH and GPG keys → New SSH key
-Paste your public key in the "Key" field
-Give it a descriptive title (e.g., "My Laptop")
+Loging to GitHub and go to Settings → SSH and GPG keys → New SSH key
+Paste my public key in the "Key" field
+write the title
 Click Add SSH key
 
 
 
 Step 3: Create a Local Git Repository...........................................
 
-bash# Create and navigate to project directory
-mkdir my-project
-cd my-project
-
 # Initialize Git repository
 git init
 
-# Create a test file
-echo "# My Project" > README.md
-
-# Configure Git (if not already done globally)
-git config --local user.name "Your Name"
-git config --local user.email "your_email@example.com"
-
-# Stage and commit the file
-git add README.md
-git commit -m "Initial commit with README"
+# Stage and commit the files
+git add .
+git commit -m "first commit"
 
 
 
 Step 4: Create a GitHub Repository..............................................
 
-Go to GitHub and click New repository
-Name your repository (e.g., "my-project")
-Set it as public or private
-Do NOT initialize with README, .gitignore, or license files
-Click Create repository
-Copy the SSH URL displayed (e.g., git@github.com:username/my-project.git)
+# Go to GitHub and click New repository
+
+# Test the connection
+ssh -T git@github.com
 
 
 
 Step 5: Link Local Repository to GitHub via SSH..................................
 
-bash# Add the remote repository using SSH URL
-git remote add origin git@github.com:username/my-project.git
+# Add the remote repository using SSH URL
+git remote set-url origin git@github.com:Hadi-Badran/Github-Course-Task1.git
 
-# Verify remote was added correctly
-git remote -v
 
 # Push local repository to GitHub with upstream tracking
 git push -u origin main
 
 
-
-Step 6: Verify Connection........................................................
-
-bash# Test SSH connection to GitHub
-ssh -T git@github.com
-You should receive a confirmation message like: "Hi username! You've successfully authenticated, but GitHub does not provide shell access."
-
-
-
-Step 7: Verify Repository Sync
-
-Visit your GitHub repository in a browser to confirm that your README.md file has been uploaded successfully.
-This completes the process of creating a local Git repository and linking it to GitHub using SSH for secure communication.
